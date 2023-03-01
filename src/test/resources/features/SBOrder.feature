@@ -1,3 +1,4 @@
+@Regression
 Feature: Validate Smart Bear Functionality
   Background:
     Given user is on "http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx"
@@ -5,7 +6,6 @@ Feature: Validate Smart Bear Functionality
     And user enters password as "test"
     And user clicks on Login button
     Then user should be routed to "http://secure.smartbearsoftware.com/samples/testcomplete12/weborders/"
-  @Regression
   Scenario: Validate "Web Orders" menu items
     And validate below menu items are displayed
       | View all orders | View all products | Order |
@@ -26,6 +26,8 @@ Feature: Validate Smart Bear Functionality
     And user clicks on "View all orders" menu item
     Then user should see their order displayed in the "List of All Orders" table
     And validate all information entered displayed correct with the order
+      | |John Doe|FamilyAlbum|2|03/01/2023|222 West Palm st|Chicago|IL|60601|Visa|2345123455667123|12/24|
+
 
   Scenario: Validate "Delete Selected" button
     When user clicks on "Check All" button

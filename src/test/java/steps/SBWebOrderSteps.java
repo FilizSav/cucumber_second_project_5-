@@ -6,18 +6,13 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pages.SBLoginPage;
 import pages.SBWebOrder;
-import utilities.Driver;
-import utilities.DropdownHandler;
-import utilities.PaymentHandler;
-import utilities.TableData;
+import utilities.*;
 
 import java.util.List;
 
@@ -60,6 +55,7 @@ public class SBWebOrderSteps {
                 break;
             case "Process":
                 sbWebOrder.processButton.click();
+                Waiter.pause(3);
                 break;
             case "Delete Selected":
                 sbWebOrder.deleteAllButton.click();
@@ -87,49 +83,62 @@ public class SBWebOrderSteps {
         sbWebOrder.clickMenuItem(item);
     }
 
-    @And("user selects {string} as product")
-    public void userSelectsAsProduct(String product) {
-        DropdownHandler.clickOnDropdownOption(sbWebOrder.productButton, sbWebOrder.productList,product);
+    @When("user selects {string} as product")
+    public void user_selects_as_product(String product) {
+        DropdownHandler.selectByVisibleText(sbWebOrder.productDropdown, product);
     }
 
     @And("user enters {int} as quantity")
     public void userEntersAsQuantity(int quantity) {
-        Actions actions = new Actions(driver);
-        actions.click().sendKeys(Keys.DELETE).sendKeys(sbWebOrder.quantity,Integer.toString(quantity));
+       sbWebOrder.quantity.sendKeys(Integer.toString(quantity));
     }
 
     @And("user enters all address information")
     public void userEntersAllAddressInformation() {
-        Object[] addressInfo = {fD.name().fullName(),fD.address().streetAddress(),fD.address().city(),fD.address().state(),fD.address().zipCode()};
+        String[] addressInfo = {"John Doe","222 West Palm st","Chicago","IL","60601"};
         for (int i = 0; i < sbWebOrder.addressInput.size(); i++) {
-            sbWebOrder.addressInput.get(i).sendKeys(addressInfo[i].toString());
+            sbWebOrder.addressInput.get(i).sendKeys(addressInfo[i]);
         }
+        Waiter.pause(3);
     }
 
     @And("user enters all payment information")
     public void userEntersAllPaymentInformation() {
-        PaymentHandler.selectRandomRadioButton(sbWebOrder.cardOption);
-        Object[] paymentInfo = {fD.finance().creditCard(), "12/24"};
+        sbWebOrder.cardOption.get(0).click();
+        //Object[] paymentInfo = {fD.finance().creditCard().replaceAll("-","1"), "12/24"};
+        Object[] paymentInfo = {"2345123455667123", "12/24"};
         for (int i = 0; i < sbWebOrder.cardInfo.size(); i++) {
             sbWebOrder.cardInfo.get(i).sendKeys(paymentInfo[i].toString());
         }
+        Waiter.pause(3);
     }
 
     @Then("user should see their order displayed in the {string} table")
     public void userShouldSeeTheirOrderDisplayedInTheTable(String rows) {
-        System.out.println(TableData.getTableRow(driver, 2));
-
+        List<WebElement>tableRow = TableData.getTableRow(driver, 2);
+        for (int i = 0; i < tableRow.size()-1; i++) {
+            Assert.assertTrue(tableRow.get(i).isDisplayed());
+        }
     }
 
     @And("validate all information entered displayed correct with the order")
-    public void validateAllInformationEnteredDisplayedCorrectWithTheOrder() {
+    public void validateAllInformationEnteredDisplayedCorrectWithTheOrder(DataTable customerInfo) {
+        List<WebElement>tableRow = TableData.getTableRow(driver, 2);
+        for (int i = 0; i < tableRow.size()-1; i++) {
+            Assert.assertEquals(customerInfo.asList().get(i), tableRow.get(i).getText());
+        }
     }
 
     @Then("validate all orders are deleted from the {string}")
     public void validateAllOrdersAreDeletedFromThe(String arg0) {
+        List<WebElement>tableRow = TableData.getTableRow(driver, 2);
+        for (int i = 0; i < tableRow.size()-1; i++) {
+            Assert.assertFalse(tableRow.get(i).isDisplayed());
+        }
     }
 
     @And("validate user sees {string} message")
-    public void validateUserSeesMessage(String arg0) {
+    public void validateUserSeesMessage(String message) {
+        Assert.assertEquals(message, sbWebOrder.emptyMessage.getText());
     }
 }

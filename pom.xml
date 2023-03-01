@@ -80,6 +80,7 @@
             <version>1.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -89,7 +90,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*Runner.java</include>
+                        <include>**/*runner.Runner.java</include>
                     </includes>
                 </configuration>
             </plugin>

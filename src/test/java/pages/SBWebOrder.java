@@ -18,17 +18,11 @@ public class SBWebOrder extends SBLoginPage {
     @FindBy(xpath = "//td//input[@type='checkbox']")
     public List<WebElement> checkBoxList;
 
-    @FindBy(css = "select[id*='MainContent']")
-    public WebElement productButton;
+    @FindBy(id = "ctl00_MainContent_fmwOrder_ddlProduct")
+    public WebElement productDropdown;
 
-    @FindBy(css = "select[id*='MainContent']>option")
-    public List<WebElement> productList;
-
-    @FindBy(id = "input[id*='Quantity']")
+    @FindBy(id = "ctl00_MainContent_fmwOrder_txtQuantity")
     public WebElement quantity;
-
-    @FindBy(id = "input[id*='Name']")
-    public WebElement name;
 
     @FindBy(xpath = "//ol[2]/li/input")
     public List<WebElement> addressInput;
@@ -41,9 +35,6 @@ public class SBWebOrder extends SBLoginPage {
 
     @FindBy(css = "a[id*='InsertButton']")
     public WebElement processButton;
-
-    @FindBy(css = "table[class='SampleTable'] tr")
-    public List<WebElement> tableRows;
 
     @FindBy(css = "input[id*='btnDelete']")
     public WebElement deleteAllButton;
