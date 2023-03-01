@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b62d311c-acce-46fa-a0dc-12faa9cc3292" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SBWebOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SBWebOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/runner/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/runner/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/steps/SBWebOrderSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/steps/SBWebOrderSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/utilities/DropdownHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utilities/DropdownHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/utilities/Waiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utilities/Waiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/features/SBLogin.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/SBLogin.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/features/SBOrder.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/SBOrder.feature" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
